@@ -33,19 +33,84 @@
 				<!-- Logo -->
 				<div id="logo">
 					<h1><a id='titleh' href="#"></a></h1>
-					<span>en desarrollo</span>
+					<span class="mailhh"></span>
 				</div>
-				
-				<!--  
-				<nav id="nav">
-					<ul>
-						<li class="active"><a href="index.html">Homepage</a></li>
-						<li><a href="left-sidebar.html">Left Sidebar</a></li>
-						<li><a href="right-sidebar.html">Right Sidebar</a></li>
-						<li><a href="no-sidebar.html">No Sidebar</a></li>
-					</ul>
-				</nav>
-				-->
+			</div>
+		</div>
+
+		<div id="featured">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<h2 id="vid0h"></h2>
+						<a id="vid0a" href="" class="image full"><img id="vid0i" src="" alt="" /></a>
+						<p id="vid0p"></p>
+						<p id="vid0extra"></p>
+					</div>
+
+					<div class="4u">
+						<h2 id="vid1h"></h2>
+						<a id="vid1a" href="" class="image full"><img id="vid1i" src="" alt="" /></a>
+						<p id="vid1p"></p>
+						<p id="vid1extra"></p>
+					</div>
+					
+					<div class="4u">
+						<h2 id="vid2h"></h2>
+						<a id="vid2a" href="" class="image full"><img id="vid2i" src="" alt="" /></a>
+						<p id="vid2p"></p>
+						<p id="vid2extra"></p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div id="main" class="wrapper style1">
+				<section class="container">
+					<div class="row">
+						<!-- Content -->
+							<div class="12u">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Multi Dom Project -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-1451436001656992"
+data-ad-slot="9077098666"
+data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+							</div>
+					</div>
+				</section>
+			</div>
+
+	<div id="featured">
+			<div class="container">
+				<div class="row">
+					<div class="4u">
+						<h2 id="vid3h"></h2>
+						<a id="vid3a" href="" class="image full"><img id="vid3i" src="" alt="" /></a>
+						<p id="vid3p"></p>
+						<p id="vid3extra"></p>
+					</div>
+					
+					<div class="4u">
+						<h2 id="vid4h"></h2>
+						<a id="vid4a" href="" class="image full"><img id="vid14" src="" alt="" /></a>
+						<p id="vid4p"></p>
+						<p id="vid4extra"></p>
+					</div>
+					
+					<div class="4u">
+						<h2 id="vid5h"></h2>
+						<a id="vid5a" href="" class="image full"><img id="vid5i" src="" alt="" /></a>
+						<p id="vid5p"></p>
+						<p id="vid5extra"></p>
+					</div>
+					
+				</div>
 			</div>
 		</div>
 
@@ -65,11 +130,36 @@
 				minidom = dom.replace('.com.ar', '');
 				mail = minidom + '@data99.com.ar';
 				document.title = minidom;
-				$('#titleh').html(dom);
+				$('#titleh').html(minidom);
+				$('.mailhh').html(mail);
 				$('#mailh').html(mail);
 				$('#mailh').attr('href','mailto:' + mail);
-				
-			    });
+				$('#newssub').html('de ' + minidom);
+			    
+
+				var videos = [];
+				var url = 'http://television.data99.com.ar/api/search/' + minidom + '/6';
+				var xhr = $.ajax({
+					url: url,
+					type: 'GET',
+				});
+				xhr.done(function(data){
+					var res = data.results;
+					$.each(res, function(i, r){
+						$("#vid"+i+"a").attr('href', 'http://television.data99.com.ar/video/' + res[i].video_id);
+						$("#vid"+i+"a").attr('target', '_blank');
+						$("#vid"+i+"i").attr('src', res[i].th_med);
+						$("#vid"+i+"h").html(res[i].title);
+						$("#vid"+i+"p").html(res[i].description);
+						var extras = '<a target="_blank" href="http://television.data99.com.ar/canal/'+res[i].canal+'">'+res[i].canal+'</a>'
+						extras += ' | <a target="_blank" href="http://television.data99.com.ar/pais/'+res[i].pais+'">'+res[i].pais+'</a>'
+						extras += ' | <a target="_blank" href="http://television.data99.com.ar/ciudad/'+res[i].ciudad+'">'+res[i].ciudad + '</a>'
+						$("#vid1extra").html(extras);
+
+						});
+					});
+
+				});
 		</script>
 	</body>
 </html>

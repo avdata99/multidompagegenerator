@@ -291,7 +291,7 @@
 	#header
 	{
 		position: relative;
-		background: #2a2f27 url(../images/banner.jpg) no-repeat;
+		background: #ffffff; /* #2a2f27;  url(../images/banner.jpg) no-repeat;*/
 		background-size: cover;
 	}
 
@@ -336,7 +336,7 @@
 	#featured
 	{
 		position: relative;
-		background: #f2f2f2;
+		background: #FFFFFF;
 	}
 	
 	#featured h2
